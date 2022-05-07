@@ -26,6 +26,11 @@ namespace AK8PO_2
             Souteze.Add(soutez);
         }
 
+        public void Odeber(Soutez soutez)
+        {
+            Souteze.Remove(soutez);
+        }
+
         // odeber bude jako aktualizuj
     }
 }
