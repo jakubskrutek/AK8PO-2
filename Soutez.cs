@@ -32,9 +32,11 @@ namespace AK8PO_2
             byte[] raw = wc.DownloadData("https://stis.ping-pong.cz/los-vse/svaz-420703/rocnik-2021/soutez-4441");
             string data = System.Text.Encoding.UTF8.GetString(raw);
 
-            int index = data.IndexOf("Los a výsledky - Soutěž ");
-            string nazevSouteze = data.Substring(index + 24, 100);
-            index = nazevSouteze.IndexOf("\t");
+            int index = odkaz.IndexOf("soutez-") + 7;
+            string cisloSouteze = odkaz.Substring(index);
+            index = data.IndexOf(cisloSouteze) + 6;
+            string nazevSouteze = data.Substring(index, 100);
+            index = nazevSouteze.IndexOf('<');
             nazevSouteze = nazevSouteze.Substring(0, index).Trim();
 
             index = odkaz.IndexOf("rocnik-");
