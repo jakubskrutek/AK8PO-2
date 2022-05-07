@@ -8,23 +8,25 @@ namespace AK8PO_2
 {
     public class Soutez
     {
-        public string Odkaz { get; set; }
+        public string OdkazTabulka { get; set; }
 
         public string NazevSouteze { get; set; }
 
+        public string OdkazLos { get; set; }
+
+        public string OdkazZapis { get; set; }
+
+        public string OdkazUspesnost { get; set; }
+
         public Soutez (string odkaz)
         {
-            Odkaz = odkaz;
+            OdkazTabulka = odkaz;
             NazevSouteze = ZiskejNazevSouteze(odkaz);
         }
 
         private string ZiskejNazevSouteze(string odkaz)
-        {
-            if ((odkaz.Contains("stis.ping-pong.cz/tabulka/svaz") == false) &&
-                (odkaz.Contains("rocnik") == false) && (odkaz.Contains("soutez") == false))
-                throw new ArgumentException("Neplatný odkaz soutěže");
-
-            odkaz.Replace("tabulka", "los-vse");
+        {            
+            odkaz = odkaz.Replace("tabulka", "los-vse");
 
             System.Net.WebClient wc = new System.Net.WebClient();
             byte[] raw = wc.DownloadData("https://stis.ping-pong.cz/los-vse/svaz-420703/rocnik-2021/soutez-4441");
@@ -41,7 +43,10 @@ namespace AK8PO_2
 
             return nazevSouteze;
         }
+
+        public override string ToString()
+        {
+            return NazevSouteze;
+        }
     }
-
-
 }

@@ -33,15 +33,14 @@ namespace AK8PO_2
             this.label2 = new System.Windows.Forms.Label();
             this.vlozOdkazTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
-            this.soutezeListView = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.aktualizovanoLabel = new System.Windows.Forms.Label();
             this.aktualizovanoDatumLabel = new System.Windows.Forms.Label();
             this.aktualizujButton = new System.Windows.Forms.Button();
-            this.zapisyButton = new System.Windows.Forms.Button();
             this.tabulkyButton = new System.Windows.Forms.Button();
             this.losyButton = new System.Windows.Forms.Button();
             this.uspesnostiButton = new System.Windows.Forms.Button();
+            this.soutezeListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -87,15 +86,7 @@ namespace AK8PO_2
             this.okButton.Text = "OK";
             this.okButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.okButton.UseVisualStyleBackColor = true;
-            // 
-            // soutezeListView
-            // 
-            this.soutezeListView.HideSelection = false;
-            this.soutezeListView.Location = new System.Drawing.Point(44, 178);
-            this.soutezeListView.Name = "soutezeListView";
-            this.soutezeListView.Size = new System.Drawing.Size(328, 88);
-            this.soutezeListView.TabIndex = 4;
-            this.soutezeListView.UseCompatibleStateImageBehavior = false;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // label3
             // 
@@ -136,15 +127,6 @@ namespace AK8PO_2
             this.aktualizujButton.TabIndex = 8;
             this.aktualizujButton.UseVisualStyleBackColor = true;
             // 
-            // zapisyButton
-            // 
-            this.zapisyButton.Location = new System.Drawing.Point(355, 349);
-            this.zapisyButton.Name = "zapisyButton";
-            this.zapisyButton.Size = new System.Drawing.Size(90, 40);
-            this.zapisyButton.TabIndex = 9;
-            this.zapisyButton.Text = "ZÁPISY";
-            this.zapisyButton.UseVisualStyleBackColor = true;
-            // 
             // tabulkyButton
             // 
             this.tabulkyButton.Location = new System.Drawing.Point(47, 349);
@@ -156,7 +138,7 @@ namespace AK8PO_2
             // 
             // losyButton
             // 
-            this.losyButton.Location = new System.Drawing.Point(206, 349);
+            this.losyButton.Location = new System.Drawing.Point(282, 349);
             this.losyButton.Name = "losyButton";
             this.losyButton.Size = new System.Drawing.Size(90, 40);
             this.losyButton.TabIndex = 9;
@@ -172,20 +154,29 @@ namespace AK8PO_2
             this.uspesnostiButton.Text = "ÚSPĚŠNOSTI";
             this.uspesnostiButton.UseVisualStyleBackColor = true;
             // 
+            // soutezeListBox
+            // 
+            this.soutezeListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.soutezeListBox.FormattingEnabled = true;
+            this.soutezeListBox.ItemHeight = 24;
+            this.soutezeListBox.Location = new System.Drawing.Point(39, 177);
+            this.soutezeListBox.Name = "soutezeListBox";
+            this.soutezeListBox.Size = new System.Drawing.Size(323, 100);
+            this.soutezeListBox.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 450);
+            this.Controls.Add(this.soutezeListBox);
             this.Controls.Add(this.losyButton);
             this.Controls.Add(this.tabulkyButton);
             this.Controls.Add(this.uspesnostiButton);
-            this.Controls.Add(this.zapisyButton);
             this.Controls.Add(this.aktualizujButton);
             this.Controls.Add(this.aktualizovanoDatumLabel);
             this.Controls.Add(this.aktualizovanoLabel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.soutezeListView);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.vlozOdkazTextBox);
             this.Controls.Add(this.label2);
@@ -204,15 +195,14 @@ namespace AK8PO_2
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox vlozOdkazTextBox;
         private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.ListView soutezeListView;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label aktualizovanoLabel;
         private System.Windows.Forms.Label aktualizovanoDatumLabel;
         private System.Windows.Forms.Button aktualizujButton;
-        private System.Windows.Forms.Button zapisyButton;
         private System.Windows.Forms.Button tabulkyButton;
         private System.Windows.Forms.Button losyButton;
         private System.Windows.Forms.Button uspesnostiButton;
+        private System.Windows.Forms.ListBox soutezeListBox;
     }
 }
 
