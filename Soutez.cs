@@ -187,6 +187,7 @@ namespace AK8PO_2
             }
             teamy = teamy.Substring(0, teamy.Length - 1);
             string[] vysledek = teamy.Split(';');
+            Array.Sort(vysledek);
             return vysledek;
         }
 

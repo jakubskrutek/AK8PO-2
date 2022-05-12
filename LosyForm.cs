@@ -13,7 +13,7 @@ namespace AK8PO_2
     public partial class LosyForm : Form
     {
         private SrpavceSoutezi spravceSoutezi;
-        private Losy losy = new Losy();        
+        private Losy losy = new Losy();
 
         public LosyForm(SrpavceSoutezi spravceSoutezi)
         {
@@ -26,9 +26,8 @@ namespace AK8PO_2
         private void soutezListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (soutezListBox.SelectedItem != null) {
-                //Soutez soutez = (Soutez)soutezListBox.SelectedItem;
-                //string odkaz = soutez.OdkazLos;
-                //string[] oddily = losy.NactiOddily(odkaz);
+                Soutez soutez = (Soutez)soutezListBox.SelectedItem;
+                oddilListBox.DataSource = soutez.Teamy;
             }
         }
     }
