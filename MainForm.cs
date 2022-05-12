@@ -12,7 +12,7 @@ namespace AK8PO_2
 {
     public partial class MainForm : Form
     {
-        private SpavceSoutezi spravceSoutezi = new SpavceSoutezi();
+        private SrpavceSoutezi spravceSoutezi = new SrpavceSoutezi();
         private bool kliknuto = false;
 
         public MainForm()
@@ -60,6 +60,12 @@ namespace AK8PO_2
         private void tabulkyButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void losyButton_Click(object sender, EventArgs e)
+        {
+            LosyForm losyForm = new LosyForm(spravceSoutezi);
+            losyForm.ShowDialog();
         }
     }
 }

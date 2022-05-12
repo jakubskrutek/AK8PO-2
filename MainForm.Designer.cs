@@ -159,6 +159,7 @@ namespace AK8PO_2
             this.losyButton.TabIndex = 9;
             this.losyButton.Text = "LOSY";
             this.losyButton.UseVisualStyleBackColor = true;
+            this.losyButton.Click += new System.EventHandler(this.losyButton_Click);
             // 
             // uspesnostiButton
             // 
@@ -204,7 +205,7 @@ namespace AK8PO_2
             this.MinimumSize = new System.Drawing.Size(578, 416);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "TTT";
             this.ResumeLayout(false);
             this.PerformLayout();
 

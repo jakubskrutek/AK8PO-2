@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace AK8PO_2
 {
-    class SpavceSoutezi
+    public class SrpavceSoutezi
     {
         public BindingList<Soutez> Souteze { get; set; }
 
-        public SpavceSoutezi()
+        public SrpavceSoutezi()
         {
             Souteze = new BindingList<Soutez>();
         }

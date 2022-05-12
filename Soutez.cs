@@ -14,14 +14,17 @@ namespace AK8PO_2
 
         public string OdkazLos { get; set; }
 
-        public string OdkazZapis { get; set; }
-
         public string OdkazUspesnost { get; set; }
+
+        public string[,] Losy { get; set; }
 
         public Soutez (string odkaz)
         {
             OdkazTabulka = odkaz;
+            OdkazLos = odkaz.Replace("tabulka", "los-vse");
+            OdkazUspesnost = odkaz.Replace("tabulka", "uspesnost-dvouhry");
             NazevSouteze = ZiskejNazevSouteze(odkaz);
+            //Losy = NactiLosy(odkaz);
         }
 
         private string ZiskejNazevSouteze(string odkaz)
@@ -29,7 +32,7 @@ namespace AK8PO_2
             odkaz = odkaz.Replace("tabulka", "los-vse");
 
             System.Net.WebClient wc = new System.Net.WebClient();
-            byte[] raw = wc.DownloadData("https://stis.ping-pong.cz/los-vse/svaz-420703/rocnik-2021/soutez-4441");
+            byte[] raw = wc.DownloadData(odkaz);
             string data = System.Text.Encoding.UTF8.GetString(raw);
 
             int index = odkaz.IndexOf("soutez-") + 7;
@@ -45,6 +48,21 @@ namespace AK8PO_2
 
             return nazevSouteze;
         }
+
+      /*  private string[,] NactiLosy(string odkaz)
+        {
+            odkaz = odkaz.Replace("tabulka", "los-vse");
+
+            System.Net.WebClient wc = new System.Net.WebClient();
+            byte[] raw = wc.DownloadData(odkaz);
+            string data = System.Text.Encoding.UTF8.GetString(raw);
+
+            string[,] vysledky = new string[1000, 6];
+            byte volba = 0;
+
+            Console.WriteLine("");
+            return vysledky;
+        }*/
 
         public override string ToString()
         {
