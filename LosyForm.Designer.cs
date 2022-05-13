@@ -58,9 +58,9 @@ namespace AK8PO_2
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(17, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(398, 18);
+            this.label2.Size = new System.Drawing.Size(402, 18);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Vyber soutěž a poté oddíl, pro který chceš rozpis generovat";
+            this.label2.Text = "Vyber soutěž a poté oddíl, pro který chceš rozpis generovat.";
             // 
             // soutezListBox
             // 
@@ -106,7 +106,7 @@ namespace AK8PO_2
             // generujButton
             // 
             this.generujButton.Image = ((System.Drawing.Image)(resources.GetObject("generujButton.Image")));
-            this.generujButton.Location = new System.Drawing.Point(225, 315);
+            this.generujButton.Location = new System.Drawing.Point(222, 315);
             this.generujButton.Name = "generujButton";
             this.generujButton.Size = new System.Drawing.Size(120, 50);
             this.generujButton.TabIndex = 6;

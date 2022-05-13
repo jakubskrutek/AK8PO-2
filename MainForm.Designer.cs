@@ -63,9 +63,9 @@ namespace AK8PO_2
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(21, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(522, 18);
+            this.label2.Size = new System.Drawing.Size(526, 18);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Vlož hypertextový odkaz na stránku s tabulkou regionální soutěže portálu STIS";
+            this.label2.Text = "Vlož hypertextový odkaz na stránku s tabulkou regionální soutěže portálu STIS.";
             // 
             // vlozOdkazTextBox
             // 

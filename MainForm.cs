@@ -60,7 +60,8 @@ namespace AK8PO_2
 
         private void tabulkyButton_Click(object sender, EventArgs e)
         {
-
+            TabulkyForm tabulkyForm = new TabulkyForm(spravceSoutezi);
+            tabulkyForm.ShowDialog();
         }
 
         private void losyButton_Click(object sender, EventArgs e)
