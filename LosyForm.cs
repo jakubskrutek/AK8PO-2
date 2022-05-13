@@ -35,13 +35,21 @@ namespace AK8PO_2
 
         private void generujButton_Click(object sender, EventArgs e)
         {
-            try {
                 string muzstvo = oddilListBox.SelectedItem.ToString();
                 var workbook = losy.GenerujLos(soutez, muzstvo);
+
+            generujLosSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx|Comma-separated values file (*.csv)|*.csv";
+            generujLosSaveFileDialog.FilterIndex = 1;
+            generujLosSaveFileDialog.RestoreDirectory = true;
+            int index = muzstvo.IndexOf('"');
+            if (index > 0) {
+                muzstvo = muzstvo.Substring(0, index - 1).Trim() + " " + muzstvo[index + 1];
             }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);     // zkusit opravit message
-            }            
+            generujLosSaveFileDialog.FileName = "Los" + muzstvo;
+
+            if (generujLosSaveFileDialog.ShowDialog() == DialogResult.OK) {
+                workbook.Save(generujLosSaveFileDialog.FileName);
+            }
         }
     }
 }

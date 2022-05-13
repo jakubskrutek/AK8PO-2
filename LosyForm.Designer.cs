@@ -36,6 +36,7 @@ namespace AK8PO_2
             this.oddilListBox = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.generujButton = new System.Windows.Forms.Button();
+            this.generujLosSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // label1
@@ -147,5 +148,6 @@ namespace AK8PO_2
         private System.Windows.Forms.ListBox oddilListBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button generujButton;
+        private System.Windows.Forms.SaveFileDialog generujLosSaveFileDialog;
     }
 }
