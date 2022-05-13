@@ -119,7 +119,7 @@ namespace AK8PO_2
                                 buffer += znak;
                                 if (buffer.Contains("<")) {
                                     for (int i = 0; i < buffer.Length; i++) {
-                                        if ((buffer[i] != '\\') && (buffer[i] != '"') && (buffer[i] != '<') && (buffer[i] != '>'))
+                                        if ((buffer[i] != '\\') && (buffer[i] != '<') && (buffer[i] != '>'))
                                             vysledky[radek, 2] += buffer[i];
                                     }
                                     buffer = "";
@@ -133,7 +133,7 @@ namespace AK8PO_2
                                 buffer += znak;
                                 if (buffer.Contains("<")) {
                                     for (int i = 0; i < buffer.Length; i++) {
-                                        if ((buffer[i] != '\\') && (buffer[i] != '"') && (buffer[i] != '<') && (buffer[i] != '>'))
+                                        if ((buffer[i] != '\\') && (buffer[i] != '<') && (buffer[i] != '>'))
                                             vysledky[radek, 3] += buffer[i];
                                     }
                                     buffer = "";

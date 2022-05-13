@@ -111,6 +111,7 @@ namespace AK8PO_2
             this.generujButton.TabIndex = 6;
             this.generujButton.Text = "    GENERUJ";
             this.generujButton.UseVisualStyleBackColor = true;
+            this.generujButton.Click += new System.EventHandler(this.generujButton_Click);
             // 
             // LosyForm
             // 
