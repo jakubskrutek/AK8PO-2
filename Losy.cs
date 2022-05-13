@@ -15,7 +15,7 @@ namespace AK8PO_2
 
         public ExcelFile GenerujLos(Soutez soutez, string muzstvo)
         {
-            string[,] rozpis = setridLos(soutez, muzstvo);
+            string[,] rozpis = SetridLos(soutez, muzstvo);
 
             SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
             var workbook = new ExcelFile();
@@ -89,7 +89,7 @@ namespace AK8PO_2
             return workbook;
         }
 
-        private string[,] setridLos(Soutez soutez, string muzstvo)
+        private string[,] SetridLos(Soutez soutez, string muzstvo)
         {
             string[,] nesetridenyRozpis = soutez.Losy;
             int pocetZapasu = 0;

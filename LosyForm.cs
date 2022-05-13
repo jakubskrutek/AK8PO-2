@@ -35,20 +35,24 @@ namespace AK8PO_2
 
         private void generujButton_Click(object sender, EventArgs e)
         {
+            if (soutezListBox.SelectedItem != null) {
                 string muzstvo = oddilListBox.SelectedItem.ToString();
                 var workbook = losy.GenerujLos(soutez, muzstvo);
 
-            generujLosSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
-            generujLosSaveFileDialog.RestoreDirectory = true;
-            int index = muzstvo.IndexOf('"');
-            if (index > 0) {
-                muzstvo = muzstvo.Substring(0, index - 1).Trim() + " " + muzstvo[index + 1];
-            }
-            generujLosSaveFileDialog.FileName = "Los " + muzstvo;
+                generujLosSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
+                generujLosSaveFileDialog.RestoreDirectory = true;
+                int index = muzstvo.IndexOf('"');
+                if (index > 0) {
+                    muzstvo = muzstvo.Substring(0, index - 1).Trim() + " " + muzstvo[index + 1];
+                }
+                generujLosSaveFileDialog.FileName = "Los " + muzstvo;
 
-            if (generujLosSaveFileDialog.ShowDialog() == DialogResult.OK) {
-                workbook.Save(generujLosSaveFileDialog.FileName);
+                if (generujLosSaveFileDialog.ShowDialog() == DialogResult.OK) {
+                    workbook.Save(generujLosSaveFileDialog.FileName);
+                }
             }
+            else
+                MessageBox.Show("Nemáte nahranou žádnou soutěž", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

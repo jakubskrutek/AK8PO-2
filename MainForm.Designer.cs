@@ -39,7 +39,6 @@ namespace AK8PO_2
             this.odeberButton = new System.Windows.Forms.Button();
             this.tabulkyButton = new System.Windows.Forms.Button();
             this.losyButton = new System.Windows.Forms.Button();
-            this.uspesnostiButton = new System.Windows.Forms.Button();
             this.soutezeListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
@@ -142,34 +141,30 @@ namespace AK8PO_2
             // tabulkyButton
             // 
             this.tabulkyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabulkyButton.Location = new System.Drawing.Point(99, 313);
+            this.tabulkyButton.Image = ((System.Drawing.Image)(resources.GetObject("tabulkyButton.Image")));
+            this.tabulkyButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tabulkyButton.Location = new System.Drawing.Point(111, 313);
             this.tabulkyButton.Name = "tabulkyButton";
-            this.tabulkyButton.Size = new System.Drawing.Size(103, 40);
+            this.tabulkyButton.Size = new System.Drawing.Size(120, 40);
             this.tabulkyButton.TabIndex = 9;
-            this.tabulkyButton.Text = "TABULKY";
+            this.tabulkyButton.Text = "TABULKY ";
+            this.tabulkyButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tabulkyButton.UseVisualStyleBackColor = true;
             this.tabulkyButton.Click += new System.EventHandler(this.tabulkyButton_Click);
             // 
             // losyButton
             // 
             this.losyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.losyButton.Location = new System.Drawing.Point(230, 313);
+            this.losyButton.Image = ((System.Drawing.Image)(resources.GetObject("losyButton.Image")));
+            this.losyButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.losyButton.Location = new System.Drawing.Point(329, 313);
             this.losyButton.Name = "losyButton";
-            this.losyButton.Size = new System.Drawing.Size(103, 40);
+            this.losyButton.Size = new System.Drawing.Size(120, 40);
             this.losyButton.TabIndex = 9;
-            this.losyButton.Text = "LOSY";
+            this.losyButton.Text = "  LOSY";
+            this.losyButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.losyButton.UseVisualStyleBackColor = true;
             this.losyButton.Click += new System.EventHandler(this.losyButton_Click);
-            // 
-            // uspesnostiButton
-            // 
-            this.uspesnostiButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uspesnostiButton.Location = new System.Drawing.Point(362, 313);
-            this.uspesnostiButton.Name = "uspesnostiButton";
-            this.uspesnostiButton.Size = new System.Drawing.Size(103, 40);
-            this.uspesnostiButton.TabIndex = 9;
-            this.uspesnostiButton.Text = "ÚSPĚŠNOSTI";
-            this.uspesnostiButton.UseVisualStyleBackColor = true;
             // 
             // soutezeListBox
             // 
@@ -189,7 +184,6 @@ namespace AK8PO_2
             this.Controls.Add(this.soutezeListBox);
             this.Controls.Add(this.losyButton);
             this.Controls.Add(this.tabulkyButton);
-            this.Controls.Add(this.uspesnostiButton);
             this.Controls.Add(this.odeberButton);
             this.Controls.Add(this.aktualizovanoDatumLabel);
             this.Controls.Add(this.aktualizovanoLabel);
@@ -223,7 +217,6 @@ namespace AK8PO_2
         private System.Windows.Forms.Button odeberButton;
         private System.Windows.Forms.Button tabulkyButton;
         private System.Windows.Forms.Button losyButton;
-        private System.Windows.Forms.Button uspesnostiButton;
         private System.Windows.Forms.ListBox soutezeListBox;
     }
 }

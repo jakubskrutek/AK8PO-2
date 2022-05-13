@@ -14,6 +14,7 @@ namespace AK8PO_2
     {
         private SrpavceSoutezi spravceSoutezi;
         private Soutez soutez;
+        private Tabulky tabulky = new Tabulky();
 
         public TabulkyForm(SrpavceSoutezi spravceSoutezi)
         {
@@ -26,12 +27,18 @@ namespace AK8PO_2
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (soutezeListBox.SelectedItem != null) {
+                soutez = (Soutez)soutezeListBox.SelectedItem;
+            }
         }
 
         private void generujButton_Click(object sender, EventArgs e)
         {
-
+            if (soutezeListBox.SelectedItem != null) {
+                var workbook = tabulky.GenerujTabulky(soutez);
+            }
+            else
+                MessageBox.Show("Nemáte nahranou žádnou soutěž", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
