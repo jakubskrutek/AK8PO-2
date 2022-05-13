@@ -29,7 +29,7 @@ namespace AK8PO_2
             worksheet.Columns[4].Width = 180 * 20;
 
             // MEZERA
-            worksheet.Rows[0].Height = 30 * 20;
+            worksheet.Rows[0].Height = 10 * 20;
 
             // NADPIS
             var nadpis = worksheet.Cells.GetSubrange("A2:E2");

@@ -38,14 +38,13 @@ namespace AK8PO_2
                 string muzstvo = oddilListBox.SelectedItem.ToString();
                 var workbook = losy.GenerujLos(soutez, muzstvo);
 
-            generujLosSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx|Comma-separated values file (*.csv)|*.csv";
-            generujLosSaveFileDialog.FilterIndex = 1;
+            generujLosSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
             generujLosSaveFileDialog.RestoreDirectory = true;
             int index = muzstvo.IndexOf('"');
             if (index > 0) {
                 muzstvo = muzstvo.Substring(0, index - 1).Trim() + " " + muzstvo[index + 1];
             }
-            generujLosSaveFileDialog.FileName = "Los" + muzstvo;
+            generujLosSaveFileDialog.FileName = "Los " + muzstvo;
 
             if (generujLosSaveFileDialog.ShowDialog() == DialogResult.OK) {
                 workbook.Save(generujLosSaveFileDialog.FileName);

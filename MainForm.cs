@@ -19,6 +19,7 @@ namespace AK8PO_2
         {
             InitializeComponent();
 
+            spravceSoutezi.Nacti();
             soutezeListBox.DataSource = spravceSoutezi.Souteze;
         }
 
@@ -33,7 +34,8 @@ namespace AK8PO_2
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }            
+            }
+            spravceSoutezi.Uloz();
         }
 
         private void vlozOdkazTextBox_MouseClick(object sender, MouseEventArgs e)
@@ -53,8 +55,7 @@ namespace AK8PO_2
                 aktualizovanoLabel.Visible = false;
                 aktualizovanoDatumLabel.Visible = false;
             }
-            DateTime datumCas = DateTime.Now;
-            aktualizovanoDatumLabel.Text = datumCas.ToString("d.M. yyyy  HH:mm");
+            spravceSoutezi.Uloz();
         }
 
         private void tabulkyButton_Click(object sender, EventArgs e)
