@@ -35,6 +35,7 @@ namespace AK8PO_2
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.soutezeListBox = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.generujTabulkuSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,5 +135,6 @@ namespace AK8PO_2
         private System.Windows.Forms.Button generujButton;
         private System.Windows.Forms.ListBox soutezeListBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.SaveFileDialog generujTabulkuSaveFileDialog;
     }
 }

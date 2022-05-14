@@ -42,14 +42,12 @@ namespace AK8PO_2
                 generujLosSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
                 generujLosSaveFileDialog.RestoreDirectory = true;
                 int index = muzstvo.IndexOf('"');
-                if (index > 0) {
+                if (index > 0)
                     muzstvo = muzstvo.Substring(0, index - 1).Trim() + " " + muzstvo[index + 1];
-                }
                 generujLosSaveFileDialog.FileName = "Los " + muzstvo;
 
-                if (generujLosSaveFileDialog.ShowDialog() == DialogResult.OK) {
+                if (generujLosSaveFileDialog.ShowDialog() == DialogResult.OK)
                     workbook.Save(generujLosSaveFileDialog.FileName);
-                }
             }
             else
                 MessageBox.Show("Nemáte nahranou žádnou soutěž", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
