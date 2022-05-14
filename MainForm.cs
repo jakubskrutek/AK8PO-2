@@ -21,11 +21,12 @@ namespace AK8PO_2
 
             spravceSoutezi.Nacti();
             soutezeListBox.DataSource = spravceSoutezi.Souteze;
+            aktualizovanoLabel.Select();
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            try {                
+            try {
                 spravceSoutezi.Pridej(vlozOdkazTextBox.Text);
                 aktualizovanoLabel.Visible = true;
                 DateTime datumCas = DateTime.Now;
@@ -68,6 +69,10 @@ namespace AK8PO_2
         {
             LosyForm losyForm = new LosyForm(spravceSoutezi);
             losyForm.ShowDialog();
+        }
+
+        private void vlozOdkazTextBox_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

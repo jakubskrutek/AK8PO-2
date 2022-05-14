@@ -68,7 +68,10 @@ namespace AK8PO_2
 
             for (int i = 0; i < tabulka.GetLength(0); i++) {
                 for (int j = 0; j < tabulka.GetLength(1); j++)
-                    worksheet.Cells[i + 6, j].Value = tabulka[i, j];
+                    if (j != 1)
+                        worksheet.Cells[i + 6, j].Value = int.Parse(tabulka[i, j]);
+                    else
+                        worksheet.Cells[i + 6, j].Value = tabulka[i, j];
             }
 
             // HLAVIČKA TABULKY

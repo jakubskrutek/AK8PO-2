@@ -77,6 +77,7 @@ namespace AK8PO_2
             this.vlozOdkazTextBox.TabIndex = 2;
             this.vlozOdkazTextBox.Text = " sem zadej odkaz";
             this.vlozOdkazTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.vlozOdkazTextBox_MouseClick);
+            this.vlozOdkazTextBox.TextChanged += new System.EventHandler(this.vlozOdkazTextBox_TextChanged);
             // 
             // deleteButton
             // 
