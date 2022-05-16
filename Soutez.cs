@@ -107,7 +107,7 @@ namespace AK8PO_2
                                     for (int i = 0; i < buffer.Length; i++) {
                                         if ((buffer[i] == '1') || (buffer[i] == '2') || (buffer[i] == '3') || (buffer[i] == '4') ||
                                             (buffer[i] == '5') || (buffer[i] == '6') || (buffer[i] == '7') || (buffer[i] == '8') ||
-                                            (buffer[i] == '9') || (buffer[i] == '.'))
+                                            (buffer[i] == '9') || (buffer[i] == '0') || (buffer[i] == '.'))
                                             vysledky[radek, 0] += buffer[i];
                                     }
                                 }
