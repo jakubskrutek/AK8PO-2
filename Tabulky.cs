@@ -6,19 +6,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AK8PO_2
-{
+{   
     public class Tabulky
     {
+        /// <summary>
+        /// Třída pro generování a správu tabulek soutěží
+        /// </summary>
         public Tabulky()
         {
         }
 
+        /// <summary>
+        /// Metoda pro vygenerování Excelového souboru s tabulkou soutěže
+        /// </summary>
+        /// <param name="soutez">Zvolená soutěž</param>
+        /// <returns>Vygenerovaný excelový sešit</returns>
         public ExcelFile GenerujTabulku(Soutez soutez)
         {
             string[,] tabulka = VytvorTabulku(soutez);
 
             SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
-            var workbook = new ExcelFile();
+            var workbook = new ExcelFile();                                     // vytvoření Excelového sešitu a listu
             var worksheet = workbook.Worksheets.Add("Tabulka");
 
             // NASTAVENÍ ŠÍŘKY BUNĚK
@@ -95,29 +103,35 @@ namespace AK8PO_2
             return workbook;
         }
 
+        /// <summary>
+        /// Metoda pro tvorbu tabulky z dat získaných z losu soutěže
+        /// </summary>
+        /// <param name="soutez">Zvolená soutěž</param>
+        /// <returns>Vygenerovaná tabulka</returns>
         private string[,] VytvorTabulku(Soutez soutez)
         {
+            /*** indexy: 0 - pořadí, 1 - tým, 2 - počet utkání, 3 - výhry, 4 - remízy, 5 - prohry, 6 - body ***/
             string[,] tabulka = new string[soutez.Teamy.Length, 7];
-            string[] pomocnaTabulka = new string[soutez.Teamy.Length];
+            string[] pomocnaTabulka = new string[soutez.Teamy.Length];                  // pomocná pole
             string[,] setridenaTabulka = new string[soutez.Teamy.Length, 7];
             byte poradi = 1;
 
             for (int i = 0; i < tabulka.GetLength(0); i++) {
                 tabulka[i, 1] = soutez.Teamy[i];
                 tabulka[i, 2] = "0";
-                tabulka[i, 3] = "0";
+                tabulka[i, 3] = "0";                                            // nastavení počátečních hodnot do tabulky
                 tabulka[i, 4] = "0";
                 tabulka[i, 5] = "0";
                 tabulka[i, 6] = "0";
                 pomocnaTabulka[i] = soutez.Teamy[i];
             }
-            for (int i = 0; i < soutez.Losy.GetLength(0); i++) {
+            for (int i = 0; i < soutez.Losy.GetLength(0); i++) {                    // hlavní cyklus pro tvorbu tabulky z losu a výsledků v něm
                 string tymA = soutez.Losy[i, 2];
-                string tymB = soutez.Losy[i, 3];
+                string tymB = soutez.Losy[i, 3];                                
                 int indexA = Array.IndexOf(pomocnaTabulka, tymA);
                 int indexB = Array.IndexOf(pomocnaTabulka, tymB);
                 if (soutez.Losy[i, 4] != null) {
-                    int x = int.Parse(tabulka[indexA, 2]);
+                    int x = int.Parse(tabulka[indexA, 2]);                      // přičtení 1 k utkání týmu
                     x++;
                     tabulka[indexA, 2] = x.ToString();
 
@@ -127,7 +141,7 @@ namespace AK8PO_2
 
                     string[] vysledek = soutez.Losy[i, 4].Split(':');
 
-                    if (int.Parse(vysledek[0]) > int.Parse(vysledek[1])) {
+                    if (int.Parse(vysledek[0]) > int.Parse(vysledek[1])) {              // pokud vyhráli domácí
                         int a = int.Parse(tabulka[indexA, 3]);
                         a++;
                         tabulka[indexA, 3] = a.ToString();
@@ -144,7 +158,7 @@ namespace AK8PO_2
                         d++;
                         tabulka[indexB, 6] = d.ToString();
                     }
-                    else if (int.Parse(vysledek[0]) < int.Parse(vysledek[1])) {
+                    else if (int.Parse(vysledek[0]) < int.Parse(vysledek[1])) {         // pokud vyhráli hosté
                         int a = int.Parse(tabulka[indexA, 5]);
                         a++;
                         tabulka[indexA, 5] = a.ToString();
@@ -161,7 +175,7 @@ namespace AK8PO_2
                         d += 4;
                         tabulka[indexB, 6] = d.ToString();
                     }
-                    else {
+                    else {                                                              // pokud to byla remíza
                         int a = int.Parse(tabulka[indexA, 4]);
                         a++;
                         tabulka[indexA, 4] = a.ToString();
@@ -182,7 +196,7 @@ namespace AK8PO_2
             }
             for (int i = (soutez.Teamy.Length - 1) * 8; i > -1 * 4; i--) {
                 for (int j = 0; j < soutez.Teamy.Length; j++) {
-                    if (int.Parse(tabulka[j, 6]) == i) {
+                    if (int.Parse(tabulka[j, 6]) == i) {                                    // vytvoření pořadí se seřazení podle obdržených bodů
                         setridenaTabulka[poradi - 1, 0] = poradi.ToString();
                         for (int k = 0; k < setridenaTabulka.GetLength(1) - 1; k++) {
                             setridenaTabulka[poradi - 1, k + 1] = tabulka[j, k + 1];

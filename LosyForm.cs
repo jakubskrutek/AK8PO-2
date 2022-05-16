@@ -17,6 +17,10 @@ namespace AK8PO_2
         private Losy losy = new Losy();
         private Soutez soutez;
 
+        /// <summary>
+        /// Formulář pro generování losů soutěže
+        /// </summary>
+        /// <param name="spravceSoutezi"></param>
         public LosyForm(SrpavceSoutezi spravceSoutezi)
         {
             InitializeComponent();
@@ -25,22 +29,32 @@ namespace AK8PO_2
             soutezListBox.DataSource = spravceSoutezi.Souteze;
         }
 
+        /// <summary>
+        /// Obsluha události Listboxu při označení soutěže
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void soutezListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (soutezListBox.SelectedItem != null) {
                 soutez = (Soutez)soutezListBox.SelectedItem;
-                oddilListBox.DataSource = soutez.Teamy;
+                oddilListBox.DataSource = soutez.Teamy;             // reakce na změnu vybrané soutěže, načtou se týmy v soutěži
             }
         }
 
+        /// <summary>
+        /// Obsluha tlačítka pro generování losu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void generujButton_Click(object sender, EventArgs e)
         {
             if (soutezListBox.SelectedItem != null) {
                 string muzstvo = oddilListBox.SelectedItem.ToString();
-                var workbook = losy.GenerujLos(soutez, muzstvo);
+                var workbook = losy.GenerujLos(soutez, muzstvo);                            // zavolání metody na vygenerování excelového souboru s losem
 
                 generujLosSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
-                generujLosSaveFileDialog.RestoreDirectory = true;
+                generujLosSaveFileDialog.RestoreDirectory = true;                           // dialog pro ukládání souboru
                 int index = muzstvo.IndexOf('"');
                 if (index > 0)
                     muzstvo = muzstvo.Substring(0, index - 1).Trim() + " " + muzstvo[index + 1];

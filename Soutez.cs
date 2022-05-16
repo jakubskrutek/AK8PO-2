@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AK8PO_2
 {
+    /// <summary>
+    /// Třída reprezentující přidanou soutěž
+    /// </summary>
     public class Soutez
     {
         public string OdkazTabulka { get; set; }
@@ -14,50 +17,63 @@ namespace AK8PO_2
 
         public string OdkazLos { get; set; }
 
-        public string OdkazUspesnost { get; set; }
-
         public string[,] Losy { get; set; }
 
         public string[] Teamy { get; set; }
 
+        /// <summary>
+        /// Konstruktor soutěže
+        /// </summary>
+        /// <param name="odkaz">Webový odkaz na tabulku soutěže</param>
         public Soutez (string odkaz)
         {
             OdkazTabulka = odkaz;
             OdkazLos = odkaz.Replace("tabulka", "los-vse");
-            OdkazUspesnost = odkaz.Replace("tabulka", "uspesnost-dvouhry");
             NazevSouteze = ZiskejNazevSouteze(odkaz);
             Losy = NactiLosy(odkaz);
             Teamy = NactiTeamy(Losy);
         }
 
+        /// <summary>
+        /// Metoda pro vytvoření názvu soutěže pro její představování
+        /// </summary>
+        /// <param name="odkaz">Webový odkaz na soutěž</param>
+        /// <returns>Název soutěže + ročník</returns>
         private string ZiskejNazevSouteze(string odkaz)
         {            
             odkaz = odkaz.Replace("tabulka", "los-vse");
 
             System.Net.WebClient wc = new System.Net.WebClient();
-            byte[] raw = wc.DownloadData(odkaz);
+            byte[] raw = wc.DownloadData(odkaz);                            // stáhne stránku v HTML
             string data = System.Text.Encoding.UTF8.GetString(raw);
 
             int index = odkaz.IndexOf("soutez-") + 7;
             string cisloSouteze = odkaz.Substring(index);
-            index = data.IndexOf(cisloSouteze) + 6;
+            index = data.IndexOf(cisloSouteze) + 6;                         // parsování textu dle hledaných kritérií
             string nazevSouteze = data.Substring(index, 100);
             index = nazevSouteze.IndexOf('<');
             nazevSouteze = nazevSouteze.Substring(0, index).Trim();
 
             index = odkaz.IndexOf("rocnik-");
             int rocnik = int.Parse(odkaz.Substring(index + 7, 4));
-            nazevSouteze = nazevSouteze + " - " + rocnik.ToString() + "/" + (rocnik + 1).ToString();
+            nazevSouteze = nazevSouteze + " - " + rocnik.ToString() + "/" + (rocnik + 1).ToString();            // přidání ročníku soutěže
 
             return nazevSouteze;
         }
 
+        /// <summary>
+        /// Metoda pro parsování losu z textu z HTML stránky soutěže
+        /// </summary>
+        /// <param name="odkaz">Odkaz na los soutěže</param>
+        /// <returns>Los soutěže</returns>
         private string[,] NactiLosy(string odkaz)
         {
+            /*** Indexy: 1 - kolo, 2 - termín, 3 - domácí, 4 - hosté, 5 - výsledek ***/
+
             odkaz = odkaz.Replace("tabulka", "los-vse");
 
             System.Net.WebClient wc = new System.Net.WebClient();
-            byte[] raw = wc.DownloadData(odkaz);
+            byte[] raw = wc.DownloadData(odkaz);                            // stáhne stránku s losem soutěže v HTML
             string data = System.Text.Encoding.UTF8.GetString(raw);
 
             string[,] vysledky = new string[1000, 5];
@@ -70,18 +86,18 @@ namespace AK8PO_2
             int index = odkaz.IndexOf("soutez");
             string soutez = odkaz.Substring(index) + "\">";
 
-            foreach (char znak in data) {
+            foreach (char znak in data) {                           // hlavní cyklus pro parsování textu, načítá po znaku...
                 zasobnik += znak;
                 if (faze == 1) {
-                    if (zasobnik.Contains("Hosté")) {
+                    if (zasobnik.Contains("Hosté")) {               // ...dokud text neobsahuje klíčové slovo
                         zasobnik = "";
                         faze = 2;
                     }
                 }
                 else if (faze == 2) {
-                    switch (volba) {
-                        case 1:
-                            if (zasobnik.Contains("Jméno"))
+                    switch (volba) {                                // začíná parsování
+                        case 1:                                     // hledá se číslovka kola soutěže
+                            if (zasobnik.Contains("Jméno"))         // klíčové slovo pro případné ukončení hledání (celý los načten)
                                 faze = 3;
                             if ((zasobnik.Contains("1")) || (zasobnik.Contains("2")) || (zasobnik.Contains("3")) || (zasobnik.Contains("4")) || 
                                 (zasobnik.Contains("5")) || (zasobnik.Contains("6")) || (zasobnik.Contains("7")) || (zasobnik.Contains("8")) || 
@@ -102,7 +118,7 @@ namespace AK8PO_2
                                 }
                             }
                         break;
-                        case 2:
+                        case 2:                                 // hledá se termín soutěže
                             if ((zasobnik.Contains("Po")) || (zasobnik.Contains("Út")) || (zasobnik.Contains("St")) || 
                                 (zasobnik.Contains("Čt")) || (zasobnik.Contains("Pá")) || (zasobnik.Contains("So")) || (zasobnik.Contains("Ne"))) {
                                 pomocna++;
@@ -114,7 +130,7 @@ namespace AK8PO_2
                                 }
                             }
                         break;
-                        case 3:
+                        case 3:                                     // hledá se domácí tým
                             if (zasobnik.Contains(soutez)) {
                                 buffer += znak;
                                 if (buffer.Contains("<")) {
@@ -128,7 +144,7 @@ namespace AK8PO_2
                                 }
                             }
                         break;
-                        case 4:
+                        case 4:                                     // hledá se hostující tým
                             if (zasobnik.Contains(soutez)) {
                                 buffer += znak;
                                 if (buffer.Contains("<")) {
@@ -142,7 +158,7 @@ namespace AK8PO_2
                                 }
                             }
                         break;
-                        case 5:
+                        case 5:                                     // hledá se výsledek
                             if (zasobnik.Contains("Výsledek:")) {
                                 buffer += znak;
                                 if (buffer.Contains("<")) {
@@ -159,38 +175,48 @@ namespace AK8PO_2
                         break;
                     }
                 }
-                else if (faze == 3) {
+                else if (faze == 3) {               // pokud už je celý los načten, text se přestane načítat
                     break;
                 }
             }
             for (int i = 0; i < vysledky.GetLength(0); i++) {
                 if (vysledky[i, 0] == null) {
-                    index = i;
+                    index = i;                              // využití proměnné index pro zjištění počtu načtených zápasů (pole pro průběžné ukládání losu je zbytečně velké)
                     break;
                 }
             }
-            string[,] vyslednyRozpis = new string[index, 5];
+            string[,] vyslednyRozpis = new string[index, 5];                // vytvoření pole o velikosti získaného losu
 
-            for (int i = 0; i < vyslednyRozpis.GetLength(0); i++) {
+            for (int i = 0; i < vyslednyRozpis.GetLength(0); i++) {             // přepsání losu do nového pole
                 for (int j = 0; j < 5; j++)
                     vyslednyRozpis[i, j] = vysledky[i, j];
             }
             return vyslednyRozpis;
         }
 
+        /// <summary>
+        /// Metoda pro získání názvů týmů působích v dané soutěži
+        /// </summary>
+        /// <param name="losy">Los soutěže</param>
+        /// <returns>Pole názvů týmů</returns>
         private string[] NactiTeamy(string[,] losy)
         {
             string teamy = "";
             for (int i = 0; i < losy.GetLength(0); i++) {
-                if (teamy.Contains(losy[i, 2]) == false)
+                if (teamy.Contains(losy[i, 2]) == false)            // každý nově nalezený tým v losu přidá do textového řetězce
                     teamy = teamy + losy[i, 2] + ";";
             }
             teamy = teamy.Substring(0, teamy.Length - 1);
-            string[] vysledek = teamy.Split(';');
+            string[] vysledek = teamy.Split(';');                   // vrátí pole názvů týmů soutěže
             Array.Sort(vysledek);
+
             return vysledek;
         }
 
+        /// <summary>
+        /// Přepsání názvu instance na název soutěže 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return NazevSouteze;

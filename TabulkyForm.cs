@@ -16,6 +16,10 @@ namespace AK8PO_2
         private Soutez soutez;
         private Tabulky tabulky = new Tabulky();
 
+        /// <summary>
+        /// Dialogvé okno pro generování tabulek soutěže
+        /// </summary>
+        /// <param name="spravceSoutezi"></param>
         public TabulkyForm(SrpavceSoutezi spravceSoutezi)
         {
             InitializeComponent();
@@ -29,14 +33,19 @@ namespace AK8PO_2
         {
         }
 
+        /// <summary>
+        /// Obsluha tlačítka pro vygenerování tabulky
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void generujButton_Click(object sender, EventArgs e)
         {
             if (soutezeListBox.SelectedItem != null) {
                 soutez = (Soutez)soutezeListBox.SelectedItem;
-                var workbook = tabulky.GenerujTabulku(soutez);
+                var workbook = tabulky.GenerujTabulku(soutez);              // zavolání metody na vygenerování excelového souboru tabulky soutěže vybrané v listboxu
 
                 generujTabulkuSaveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
-                generujTabulkuSaveFileDialog.RestoreDirectory = true;
+                generujTabulkuSaveFileDialog.RestoreDirectory = true;                       // dialogové okno pro uložení excelového souboru
                 string nazev = soutez.NazevSouteze;
                 int index = nazev.IndexOf('-');
                 if (index > 0)

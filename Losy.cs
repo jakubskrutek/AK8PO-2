@@ -7,19 +7,28 @@ using GemBox.Spreadsheet;
 
 namespace AK8PO_2
 {
+    /// <summary>
+    /// Třída pro generování a správu losů soutěže
+    /// </summary>
     public class Losy
     {
         public Losy()
         {
         }
 
+        /// <summary>
+        /// Metoda pro vygenerování Excelového souboru s losem soutěže
+        /// </summary>
+        /// <param name="soutez">Zvolená soutěž</param>
+        /// <param name="muzstvo">Tým v soutěži</param>
+        /// <returns>Vygenerovaný Excelový sešit</returns>
         public ExcelFile GenerujLos(Soutez soutez, string muzstvo)
         {
             string[,] rozpis = SetridLos(soutez, muzstvo);
 
             SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
             var workbook = new ExcelFile();
-            var worksheet = workbook.Worksheets.Add("Los");
+            var worksheet = workbook.Worksheets.Add("Los");                 // vytvoření Excelového sešitu a listu
 
             // NASTAVENÍ ŠÍŘKY BUNĚK
             worksheet.Columns[0].Width = 100 * 20;
@@ -85,10 +94,15 @@ namespace AK8PO_2
             worksheet.Cells[5, 3].Value = "HOSTÉ";
             worksheet.Cells[5, 4].Value = "VÝSLEDEK";
 
-            workbook.Save(@"D:\Los.xlsx");
             return workbook;
         }
 
+        /// <summary>
+        /// Metoda pro setřízení losu dle zvoleného týmu v soutěži
+        /// </summary>
+        /// <param name="soutez">Zvolená soutěž</param>
+        /// <param name="muzstvo">Tým v soutěži</param>
+        /// <returns>Setřízené zápasy týmu</returns>
         private string[,] SetridLos(Soutez soutez, string muzstvo)
         {
             string[,] nesetridenyRozpis = soutez.Losy;
@@ -96,7 +110,7 @@ namespace AK8PO_2
             int index = 0;
 
             for (int i = 0; i < nesetridenyRozpis.GetLength(0); i++) {
-                if ((nesetridenyRozpis[i, 2] == muzstvo) || (nesetridenyRozpis[i, 3] == muzstvo))
+                if ((nesetridenyRozpis[i, 2] == muzstvo) || (nesetridenyRozpis[i, 3] == muzstvo))       // zjištění počtu zápasů pro zvolený tým soutěže
                     pocetZapasu++;
             }
 
@@ -104,7 +118,7 @@ namespace AK8PO_2
 
             for (int i = 0; i < nesetridenyRozpis.GetLength(0); i++) {
                 if ((nesetridenyRozpis[i, 2] == muzstvo) || (nesetridenyRozpis[i, 3] == muzstvo)) {
-                    for (int j = 0; j < nesetridenyRozpis.GetLength(1); j++) {
+                    for (int j = 0; j < nesetridenyRozpis.GetLength(1); j++) {                          // uložení zápasu vybraného týmu do pole
                         rozpis[index, j] = nesetridenyRozpis[i, j];
                     }
                     index++;
